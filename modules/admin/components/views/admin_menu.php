@@ -12,10 +12,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav">
+
                 <li class="active">
                     <a href="<?= Url::to(['/admin/orders'])?>">Orders</a>
                 </li>
-                <li><a href="Menu"></a></li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-expanded="false">Categories<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?= Url::to(['/admin/categories'])?>">Categories index</a></li>
+                        <li><a href="#">Add category</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"  aria-expanded="false">Product menu<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -23,7 +35,9 @@
                         <li><a href="#">Product list</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Testimonials</a></li>
+
+                <li><a href="#">Testimonials</a></li
+                >
                 <li><a href="#">Users</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Settings list <span class="caret"></span></a>

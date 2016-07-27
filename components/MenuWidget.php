@@ -19,6 +19,7 @@ class MenuWidget extends Widget
     public $data;
     public $tree;
     public $menuHtml;
+    public $model;
 
     public function init()
     {
@@ -32,7 +33,9 @@ class MenuWidget extends Widget
     public function run()
     {
         //get data from cache
-        $menu = Yii::$app->cache->get('menu');
+        if('menu' == $this->tpl) {
+            $menu = Yii::$app->cache->get('menu');
+        }
 
         if(!empty($menu)){
             return $menu;
@@ -44,7 +47,9 @@ class MenuWidget extends Widget
             $this->menuHtml = $this->getMenuHtml($this->tree);
 
             //set data to cache
-            Yii::$app->cache->set('menu', $this->menuHtml, 60);
+            if('menu' == $this->tpl) {
+                Yii::$app->cache->set('menu', $this->menuHtml, 60);
+            }
 
             return $this->menuHtml;
         }
@@ -71,18 +76,18 @@ class MenuWidget extends Widget
     }
 
 
-    protected function getMenuHtml(array $tree)
+    protected function getMenuHtml(array $tree, $tab = '')
     {
         $str = "";
 
         foreach ($tree as $category){
-            $str .= $this->catToTemplate($category);
+            $str .= $this->catToTemplate($category, $tab);
         }
 
         return $str;
     }
 
-    protected function catToTemplate($category)
+    protected function catToTemplate($category, $tab)
     {
         ob_start();
         include __DIR__ . DIRECTORY_SEPARATOR.'menu_tpl'.DIRECTORY_SEPARATOR. $this->tpl . ".php";

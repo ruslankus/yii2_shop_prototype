@@ -1,6 +1,7 @@
 <?php
     use app\assets\AdminAsset;
     use app\modules\admin\components\MenuAdminWidget;
+    use yii\helpers\Html;
 
     AdminAsset::register($this);
 
@@ -12,6 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= Html::csrfMetaTags() ?>
     <title>Bootstrap Agency Template</title>
 
     <?php $this->head() ?>
@@ -30,6 +32,30 @@
 
 
 <section id="main" class="container">
+
+    <?php if(Yii::$app->session->hasFlash('success')):?>
+    <div class="row">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <?= Yii::$app->session->getFlash('success'); ?>
+        </div>
+    </div>
+
+    <?php endif; ?>
+
+    <?php if(Yii::$app->session->hasFlash('error')):?>
+    <div class="row">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <?= Yii::$app->session->getFlash('error'); ?>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="row">
 
 
