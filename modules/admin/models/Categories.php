@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use app\models\Product;
 use Yii;
 
 /**
@@ -42,6 +43,13 @@ class Categories extends \yii\db\ActiveRecord
     public function getParent()
     {
         return $this->hasOne(self::className(),['id' => 'parent_id']);
+    }
+
+
+
+    public function getProduct()
+    {
+        return $this->hasMany(Product::className(),['category_id' => 'id']);
     }
 
 

@@ -123,6 +123,15 @@ use yii\helpers\Url;
                 </div><!--/product-details-->
 
 
+                <div class="category-tab shop-details-tab"><!--category-tab-->
+                    <div class="col-sm-12">
+                        <div class="" id="reviews" >
+                            <?= $product->content ?>
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
