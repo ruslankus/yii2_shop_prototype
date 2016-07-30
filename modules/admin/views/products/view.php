@@ -5,10 +5,16 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Products */
+$img = $model->getImage();
+
+$img_url = $img->getUrl();
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+
+
 ?>
 <div class="products-view">
 
@@ -25,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -38,7 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             'keywords',
             'description',
-            'img',
+
+            [
+                'attribute' => 'img',
+                'value' => "<img src='{$img_url}' alt='{$model->name }' height='180' >",
+                'format' => 'html'
+            ],
+
             [
                 'attribute' =>'hit',
                 'value' => !empty($model->hit)? "<span class='text-danger'>Hit</span>" : '',

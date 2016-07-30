@@ -15,15 +15,18 @@ use mihaildev\elfinder\ElFinder;
 
 <div class="products-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?php //$items = ArrayHelper::map(Categories::find()->all(),'id', 'name') ?>
     <?php // echo $form->field($model, 'parent_id')->dropDownList($items);  ?>
 
+    <div class="form-group field-products_category_id has-success">
+        <label for="products-category_id_id" class="control-label">Product category</label>
+        <select name="Products[category_id]" class="form-control" id="products-category_id">
+            <?= MenuWidget::widget(['tpl' => 'select_product', 'model' => $model]) ?>
+        </select>
 
-    <select name="Products[category_id]" class="form-control" id="products-category_id">
-        <?= MenuWidget::widget(['tpl' => 'select_product', 'model' => $model]) ?>
-    </select>
+    </div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -44,7 +47,9 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+
+    <?= $form->field($model, 'gallery[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
     <?= $form->field($model, 'hit')->checkbox(['0','1']) ?>
 

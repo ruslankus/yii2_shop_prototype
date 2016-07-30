@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "products".
@@ -21,6 +22,26 @@ use Yii;
  */
 class Products extends \yii\db\ActiveRecord
 {
+
+    /**
+     * adding image field for uploading
+     * images via Yii2images plugin
+     * @property UploadedFile $image
+     *
+     */
+    public $image;
+
+    public $gallery = [];
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -40,6 +61,9 @@ class Products extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['price'], 'number'],
             [['name', 'keywords', 'description', 'img'], 'string', 'max' => 255],
+            [['image'], 'file', 'extensions' => 'png, jpg'],
+            [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 3],
+
         ];
     }
 
@@ -63,10 +87,48 @@ class Products extends \yii\db\ActiveRecord
             'price' => 'Price',
             'keywords' => 'Keywords',
             'description' => 'Description',
-            'img' => 'Img',
+            'image' => 'Image',
+            'gallery' => "Gellery",
             'hit' => 'Hit',
             'new' => 'New',
             'sale' => 'Sale',
         ];
+    }
+
+
+
+    public function upload()
+    {
+        if($this->validate()){
+            $path = "upload/store";
+
+            $full_path = $path . DIRECTORY_SEPARATOR . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($full_path);
+            $this->attachImage($full_path,true);
+            @unlink($full_path);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function uploadGallery()
+    {
+        if($this->validate()){
+
+            foreach ($this->gallery as $file){
+                $path = "upload/store";
+                $full_path = $path . DIRECTORY_SEPARATOR . $file->baseName . '.' . $file->extension;
+
+                $file->saveAs($full_path);
+                $this->attachImage($full_path);
+                @unlink($full_path);
+            }
+
+        }else{
+            return false;
+        }
+
     }
 }
