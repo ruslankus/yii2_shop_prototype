@@ -38,7 +38,9 @@
                     </ul>
                 </li>
 
-                <li><a href="#">Testimonials</a></li
+                <li>
+                    <a href="<?= Url::to(['/admin/languages'])?>">Languages</a>
+                </li
                 >
                 <li><a href="#">Users</a></li>
                 <li class="dropdown">

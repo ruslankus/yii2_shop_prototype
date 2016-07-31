@@ -31,6 +31,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'qDIJr2rfKmmBC6LWo9mdWxL-FBrnGXEv',
+            'class' => 'app\components\LangRequest'
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -45,6 +46,9 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
+
+
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -76,13 +80,38 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
 
         'urlManager' => [
+            'class' => 'app\components\LangUrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
+                //rules multi languges
+                '<language:\w{2}>' => '/',
+                '<language:\w{2}\/>' => '/',
+                '<language:\w{2}>/category/<id:\d+>/page/<page:\d+>' => 'category/view',
+                '<language:\w{2}>/category/<id:\d+>' => 'category/view',
+                '<language:\w{2}>/<controller:\w+>/<action:\w+>/<id:\w+>'=>'<controller>/<action>',
+
+
+                //rules without language
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-                'admin/<action:(login|logout)>' => 'admin/auth/<action>'
+                'admin/<action:(login|logout)>' => 'admin/auth/<action>',
+
+                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
+                'gii/<controller:\w+>/<action:\w+>/<id:\w+>'=>'gii/<controller>/<action>',
+
+                'admin/<controller:\w+>/<action:\w+>'=>'admin/<controller>/<action>',
+                'admin/<controller:\w+>/<action:\w+>/<id:\w+>'=>'admin/<controller>/<action>',
+
+                '<controller:\w+>/<action:\w+>/<id:\w+>'=>'<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
+
+
+
+
+
 
             ],
         ],

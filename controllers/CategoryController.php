@@ -18,8 +18,15 @@ use yii\helpers\Html;
 class CategoryController extends AppController
 {
 
+    public function init()
+    {
+        parent::init();
+    }
+
     public function actionIndex()
     {
+        $current_lang = $this->_current_lang;
+
         $hits = [];
         $hits = Yii::$app->cache->get('hits');
 
@@ -28,7 +35,7 @@ class CategoryController extends AppController
             Yii::$app->cache->set('hits',$hits,60);
         }
 
-        return $this->render('index',compact('hits'));
+        return $this->render('index',compact('hits', 'current_lang'));
     }
 
 

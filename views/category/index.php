@@ -134,7 +134,7 @@ use yii\helpers\Url;
                                             <h2><?= $hit->price; ?></h2>
 
                                             <p>
-                                                <a href="<?= Url::to(['product/view', 'id' => $hit->id]) ?>">
+                                                <a href="<?= Url::to(['product/view', 'id' => $hit->id, 'language' => $current_lang['url'] ]) ?>">
                                                     <?= $hit->name; ?>
                                                 </a>
                                             </p>

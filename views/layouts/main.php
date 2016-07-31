@@ -4,6 +4,8 @@
 	use yii\helpers\Html;
     use yii\helpers\Url;
 	use yii\bootstrap\Modal;
+	use app\components\widgets\LangMenuWidget;
+    use app\components\widgets\MainMenuWidget;
 
     AppAsset::register($this);
     IeAssets::register($this);
@@ -66,18 +68,12 @@
                                 <?= Html::img("@web/images/home/logo.png", ['alt' => 'E-Shopper'])?>
                             </a>
 						</div>
+
+
 						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
-								</ul>
-							</div>
-							
+
+							<?= LangMenuWidget::widget() ?>
+
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									DOLLAR
@@ -121,28 +117,17 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
+
+
 						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
-							</ul>
+
+							<?= MainMenuWidget::widget(); ?>
+
 						</div>
+
+
+
+
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">

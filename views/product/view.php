@@ -3,6 +3,10 @@ use app\components\MenuWidget;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
+
+
+
+
 ?>
 
 <section>
@@ -49,7 +53,11 @@ use yii\helpers\Url;
             <div class="col-sm-9 padding-right">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
+
                         <div class="view-product">
+
+
+
                             <?= Html::img("@web/images/products/{$product->img}",['alt' => $product->name])?>
                             <h3>ZOOM</h3>
                         </div>

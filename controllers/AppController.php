@@ -13,6 +13,15 @@ use yii\web\Controller;
 
 abstract class AppController extends Controller
 {
+
+    protected $_current_lang;
+
+    public function init()
+    {
+        $this->_current_lang = \Yii::$app->session->get('current_language');
+    }
+
+
     protected function setMeta($title=null, $meta=null, $description=null)
     {
         $this->view->title = $title;

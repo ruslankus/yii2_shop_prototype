@@ -60,7 +60,8 @@ use yii\helpers\Url;
 
                     <?php if(!empty($products)):?>
                     <?php $i=0; foreach ($products as $product):
-                            $img = !empty($product->img)? $product->img : 'no-imge.jpg'
+
+                            $img = $product->getImage();
                     ?>
 
 
@@ -69,7 +70,7 @@ use yii\helpers\Url;
                                 <div class="single-products">
                                     <div class="productinfo text-center">
 
-                                        <?= Html::img("@web/images/products/{$img}",['alt'=> $product->name])?>
+                                        <?= Html::img($img->getUrl(),['alt'=> $product->name])?>
                                         <h2><?= $product->price; ?></h2>
                                         <p>
                                             <a href="<?= Url::to(["product/view",'id' => $product->id ]) ?>">
