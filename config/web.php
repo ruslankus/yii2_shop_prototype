@@ -88,6 +88,12 @@ $config = [
                 //rules multi languges
                 '<language:\w{2}>' => '/',
                 '<language:\w{2}\/>' => '/',
+
+                '<language:\w{2}>/pages' =>  'pages/index',
+                '<language:\w{2}>/pages/<id:\d+>' =>  'pages/index',
+                '<language:\w{2}>/pages/<action:\w+>' =>  'pages/<action>',
+                '<language:\w{2}>/pages/<action:\w+>/<id:\w+>'=>'pages/<action>',
+
                 '<language:\w{2}>/category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 '<language:\w{2}>/category/<id:\d+>' => 'category/view',
                 '<language:\w{2}>/<controller:\w+>/<action:\w+>/<id:\w+>'=>'<controller>/<action>',
